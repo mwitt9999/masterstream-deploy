@@ -1,0 +1,50 @@
+version: '2.0'
+
+#######################################
+# Data Volumes
+########################################
+volumes:
+  mysql-data:
+
+services:
+  #######################################
+  # Masterstream Deployment App
+  ########################################
+  deploy-app:
+    build: build/deploy-app
+    container_name: masterstream_deploy_app
+    links:
+      - test-deployment-app
+      - mysql
+    ports:
+      - "8080:8080"
+      - "3000:3000"
+    volumes:
+      - ~/salestreamsoft/deploy/frontend:/var/www/html/frontend
+
+  #######################################
+  # Test Deployment App
+  ########################################
+  test-deployment-app:
+    build: build/test-deployment-app
+    container_name: masterstream_test_deployment_app
+    ports:
+      - "8081:8081"
+
+  #######################################
+  # MySQL
+  ########################################
+  mysql:
+    container_name: masterstream_deploy_mysql
+    restart: always
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+      - "2222:22"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'deploy'
+      MYSQL_PASS: 'password'
+      MYSQL_DATABASE: 'masterstream_deploy'
+    volumes:
+      - mysql-data:/var/lib/mysql

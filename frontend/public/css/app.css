@@ -1,0 +1,54 @@
+.deploy-sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+}
+
+.main {
+    padding: 20px;
+}
+
+.portlet.light.bordered {
+    border: 1px solid #e0e3e5!important;
+}
+.portlet.light {
+    padding: 12px 20px 15px;
+    background-color: #e0e3e5;
+}
+.portlet.bordered {
+    border-left: 2px solid #e0e3e5!important;
+}
+.portlet {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    border-radius: 4px;
+}
+
+.nav-links:link, .nav-links:visited {
+    color: #57c7d4;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nav-links:hover, a:active {
+    color: #a3f5ff;
+}
+
+.err-div-form-user{
+    display:none;
+}
+
+.err-div-form-server{
+    display:none;
+}
+

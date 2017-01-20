@@ -1,0 +1,4 @@
+frontend/storage
+frontend/vendor
+frontend/.env
+.idea
