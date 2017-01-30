@@ -20,11 +20,6 @@ class CreatePipelinesTable extends Migration
             $table->timestamps();
         });
 
-        $pipeline = new \App\Pipeline;
-        $pipeline->name = 'Test Deployment App';
-        $pipeline->type = 'Build';
-        $pipeline->save();
-
     }
 
     /**

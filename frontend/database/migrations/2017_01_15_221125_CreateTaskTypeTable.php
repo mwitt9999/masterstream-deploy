@@ -18,10 +18,6 @@ class CreateTaskTypeTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        $taskType = new \App\TaskType;
-        $taskType->name = 'checkout';
-        $taskType->save();
     }
 
     /**

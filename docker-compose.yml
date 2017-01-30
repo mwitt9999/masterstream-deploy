@@ -8,6 +8,23 @@ volumes:
 
 services:
   #######################################
+  # Masterstream Deployment Nginx
+  ########################################
+  deploy-nginx:
+    build: build/deploy-nginx
+    container_name: masterstream_deploy_nginx
+    links:
+      - test-deployment-app
+      - mysql
+    ports:
+      - "8080:8080"
+    volumes_from:
+      - deploy-app
+    extra_hosts:
+          - "dockerhost:${localhost_ip}"
+
+
+  #######################################
   # Masterstream Deployment App
   ########################################
   deploy-app:
@@ -17,22 +34,22 @@ services:
       - test-deployment-app
       - mysql
     ports:
-      - "8080:8080"
       - "3000:3000"
     volumes:
       - ~/salestreamsoft/deploy/frontend:/var/www/html/frontend
+    extra_hosts:
+          - "dockerhost:${localhost_ip}"
 
   #######################################
-  # Test Deployment App
+  # Masterstream Deployment Redis
   ########################################
-  test-deployment-app:
-    build: build/test-deployment-app
-    container_name: masterstream_test_deployment_app
-    ports:
-      - "8081:8081"
+  redis:
+    container_name: masterstream_deploy_redis
+    restart: always
+    build: build/deploy-redis
 
   #######################################
-  # MySQL
+  # Masterstream Deployment MySQL
   ########################################
   mysql:
     container_name: masterstream_deploy_mysql
@@ -48,3 +65,13 @@ services:
       MYSQL_DATABASE: 'masterstream_deploy'
     volumes:
       - mysql-data:/var/lib/mysql
+
+  #######################################
+  # Test Deployment App
+  ########################################
+  test-deployment-app:
+    build: build/test-deployment-app
+    container_name: masterstream_test_deployment_app
+    ports:
+      - "8081:8081"
+

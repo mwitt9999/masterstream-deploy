@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="portlet-body form">
-                    <table class="table table-striped" id="build-table">
+                    <table class="table table-striped deploy-tables" id="build-table">
                         <thead>
                         <tr>
                             <th>id</th>

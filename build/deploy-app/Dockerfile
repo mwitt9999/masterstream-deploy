@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
 	libpng12-dev \
-	nginx \
 	curl \
 	nano \
 	vim \
@@ -19,9 +18,7 @@ RUN apt-get update && apt-get install -y \
 	sendmail \
 	wget \
 	sudo \
-	net-tools \
-	openssh-server \
-	redis-server
+	openssh-server
 
 #install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -53,13 +50,6 @@ RUN docker-php-ext-install mcrypt
 
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
-#RUN pecl install mongodb && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini
-
-RUN pecl channel-update pecl.php.net
-RUN pecl install mongodb && \
-    echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini
-
-
 #Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
@@ -77,11 +67,5 @@ COPY id_rsa.pub /var/www/.ssh/id_rsa.pub
 COPY ./entrypoint.sh /entrypoint.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-#Add custom Nginx vhost config files
-ADD nginx-conf/masterstream-deploy.app.conf /etc/nginx/conf.d/masterstream-deploy.app.conf
-
 #Start Supervisord
 CMD ["/usr/bin/supervisord"]
-
-#Expose ports
-EXPOSE 6379 8080

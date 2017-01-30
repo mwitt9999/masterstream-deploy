@@ -19,11 +19,6 @@ class CreateServersTable extends Migration
             $table->string('ip');
             $table->timestamps();
         });
-
-        $server = new \App\Server;
-        $server->name = 'Test Deployment Server';
-        $server->ip = 'masterstream_test_deployment_app';
-        $server->save();
     }
 
     /**

@@ -20,12 +20,6 @@ class CreateSitesTable extends Migration
             $table->string('github_repository_name');
             $table->timestamps();
         });
-
-        $site = new \App\Site;
-        $site->name = 'Test Deployment App';
-        $site->github_account_name = 'mwitt9999';
-        $site->github_repository_name = 'test-deployment-app';
-        $site->save();
     }
 
     /**

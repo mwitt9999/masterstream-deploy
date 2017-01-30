@@ -25,7 +25,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD test-deployment.app.conf /etc/nginx/conf.d/test-deployment.app.conf
 
 #Start supervisord
-CMD ["/usr/bin/supervisord"]
+#CMD ["/usr/bin/supervisord"]
 
 #Expose ports
 EXPOSE 8081 22

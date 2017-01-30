@@ -15,7 +15,9 @@ class Build extends Model
         $build->dispatch_id = $dispatchId;
         $build->on_server = $on_server;
 
-        return $build->save();
+        $build->save();
+
+        return $build->id;
     }
 
     public function editBuildById($id) {

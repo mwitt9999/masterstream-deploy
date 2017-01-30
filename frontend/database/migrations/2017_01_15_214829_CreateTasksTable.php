@@ -22,14 +22,6 @@ class CreateTasksTable extends Migration
             $table->boolean('run_from_build_directory');
             $table->timestamps();
         });
-
-        $task = new \App\Task;
-        $task->name = 'Composer Install';
-        $task->command = 'sudo composer install';
-        $task->output_message = 'Installing Composer Dependencies';
-        $task->command_directory = '';
-        $task->run_from_build_directory = true;
-        $task->save();
     }
 
     /**

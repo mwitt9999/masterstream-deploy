@@ -1,0 +1,7 @@
+
+Host dev01
+	HostName dev01.salestreamsoft.com
+	Port 2222
+        User deployer
+	IdentityFile /var/www/.ssh/id_rsa
+        IdentitiesOnly yes
