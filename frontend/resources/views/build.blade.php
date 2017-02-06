@@ -153,7 +153,7 @@
         });
 
         function listenForBuildRemovalResults() {
-            var socketIPAddress = 'http://{{getenv('DOMAIN_NAME')}}:3000';
+            var socketIPAddress = 'http://{{getenv('MAIN_DOCKER_IP_ADDRESS')}}:3000';
             var socket = io(socketIPAddress);
 
             socket.on('remove-builds:ShowBuildRemovalResult', function(data){

@@ -14,7 +14,7 @@
 <script>
 
     function listenForTaskResults() {
-        var socketIPAddress = 'http://{{getenv('DOMAIN_NAME')}}:3000';
+        var socketIPAddress = 'http://{{getenv('MAIN_DOCKER_IP_ADDRESS')}}:3000';
         var socket = io(socketIPAddress);
 
 //        socket.on('terminal-output:ShowTerminalTaskResult', function(data){

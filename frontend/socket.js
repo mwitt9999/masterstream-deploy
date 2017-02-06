@@ -1,7 +1,7 @@
 var server = require('http').Server();
 var io = require('socket.io')(server);
 var Redis = require('ioredis');
-var redis = new Redis();
+var redis = new Redis(6379, 'masterstream_deploy_redis');
 
 redis.subscribe('terminal-output');
 
