@@ -1,11 +1,79 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Masterstream Deploy Application
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### Installation 
+##### Complete following steps in order 
+(If errors occur at any step, stop and troubleshoot error before continuing to next step)
+
+1. Run Command: 
+
+```
+    git clone https://github.com/mwitt9999/masterstream-deploy.git /path/to/clone/location
+```
+
+2. Run Commands (from repo base directory):
+```
+    mkdir -p frontend/storage/logs
+    mkdir -p frontend/storage/framework
+    mkdir -p frontend/storage/cache
+    mkdir -p frontend/storage/views
+    chown -R www-data:www-data frontend/storage   
+```
+
+3. Run Command (from repo base directory):
+
+```
+    docker-compose up --build
+```
+
+4. SSH Into Container:
+
+```
+    docker exec -it masterstream_deploy_app /bin/bash
+```
+
+5. Run Commands:
+
+```
+    cd frontend
+    composer install 
+    nodejs install
+    php artisan migrate
+```
+
+6. Copy .env.example to .env
+
+```
+    cp .env.example .env
+```
+
+7. Edit .env and update these variables
+
+```
+    MAIN_DOCKER_IP_ADDRESS=172.19.0.4
+
+    GITHUB_USERNAME=your_github_username
+    GITHUB_PASSWORD=your_github_password
+```
+
+8. Exit docker container:
+
+```
+    exit
+```
+
+9. Run Command:
+
+```
+    sudo vim /etc/hosts
+```
+
+10. Paste to /etc/hosts:
+
+```
+    127.0.0.1 masterstream-deploy.app
+```
+
+11. visit masterstream-deploy.app in browser
 
 ## About Laravel
 
